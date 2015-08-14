@@ -4,7 +4,7 @@ var https = require('https')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('findAuthor', { title: 'Express' });
+  res.render('index', { title: 'Express' });
 });
 
 //api call to return an authors books
