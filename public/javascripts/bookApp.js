@@ -1,6 +1,7 @@
 var bookApp = angular.module('bookApp', [])
 
 bookApp.controller('BookListCtrl', function($scope){
+  $scope.name = "World",
   $scope.books = [
     {'name': 'Nexus S',
      'snippet': 'Fast just got faster with Nexus S.'},

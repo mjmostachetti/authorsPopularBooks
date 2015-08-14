@@ -3,11 +3,16 @@ html(ng-app="bookApp")
     link(rel='stylesheet' href='/stylesheets/style.css')
   body(ng-controller="BookListCtrl")
     svg.chart
-    ul
-      li(ng-repeat="book in books")
-        span!="{{book.name}}"
-        p!="{{book.snippet}}"
-
+    .continer-fluid
+      .row
+        .col-md-2
+          !="Search: "
+          input(ng-model="query")
+        .col-md-10
+          ul.books
+            li(ng-repeat="book in books | filter:query")
+              span!="{{book.name}}"
+              p!="{{book.snippet}}"
 
   block templates
     //script(type="text/html")#resume-view: include components/resume.jade
