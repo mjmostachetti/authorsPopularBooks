@@ -1,6 +1,7 @@
 html(ng-app="bookApp")
   head
     link(rel='stylesheet' href='/stylesheets/style.css')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
   body(ng-controller="BookListCtrl")
     svg.chart
     .continer-fluid
@@ -8,9 +9,13 @@ html(ng-app="bookApp")
         .col-md-2
           !="Search: "
           input(ng-model="query")
+          select(ng-model="orderProp")
+            option(value="name") Alphabetical
+            option(value="age") Newest
+            option(value="-age") Oldest
         .col-md-10
           ul.books
-            li(ng-repeat="book in books | filter:query")
+            li(ng-repeat="book in books | filter:query | orderBy:orderProp")
               span!="{{book.name}}"
               p!="{{book.snippet}}"
 

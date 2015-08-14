@@ -1,13 +1,9 @@
 var bookApp = angular.module('bookApp', [])
 
-bookApp.controller('BookListCtrl', function($scope){
-  $scope.name = "World",
-  $scope.books = [
-    {'name': 'Nexus S',
-     'snippet': 'Fast just got faster with Nexus S.'},
-    {'name': 'Motorola XOOM™ with Wi-Fi',
-     'snippet': 'The Next, Next Generation tablet.'},
-    {'name': 'MOTOROLA XOOM™',
-     'snippet': 'The Next, Next Generation tablet.'}
-  ]
+bookApp.controller('BookListCtrl', function($scope, $http){
+  $scope.name = "World";
+  $http.get('books.json').success(function(data){
+    $scope.books = data;
+  })
+  $scope.orderProp = 'age';
 })
