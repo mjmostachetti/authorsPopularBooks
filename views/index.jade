@@ -1,7 +1,10 @@
 html(ng-app="bookApp")
   head
     link(rel='stylesheet' href='/stylesheets/style.css')
-    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+    link(rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+    script(type='text/javascript' src='/bower_components/angular/angular.min.js')
+    script(type='text/javascript' src='/bower_components/angular-route/angular-route.min.js')
+    script(type='text/javascript' src='/bower_components/d3/d3.min.js')          
   body(ng-controller="BookListCtrl")
     svg.chart
     .continer-fluid
@@ -15,16 +18,16 @@ html(ng-app="bookApp")
             option(value="-age") Oldest
         .col-md-10
           ul.books
-            li(ng-repeat="book in books | filter:query | orderBy:orderProp")
-              span!="{{book.name}}"
+            li.thumbnail(ng-repeat="book in books | filter:query | orderBy:orderProp")
+              a.thumb(href!="#/books/{{ book.id }}")
+                img(ng-src!="{{book.imageUrl}}")
+              a(href!="#/books/{{book.id}}")!="{{book.name}}"
               p!="{{book.snippet}}"
 
   block templates
     //script(type="text/html")#resume-view: include components/resume.jade
     
   block scripts
-    script(type='text/javascript' src='../javascripts/jquery-2.1.4.js')
-    script(type='text/javascript' src='../javascripts/angular.min.js')
     script(type='text/javascript' src='../javascripts/d3.min.js')
     script(type='text/javascript' src='../javascripts/bookApp.js')
     script(type='text/javascript' src='../javascripts/d3Examples.js') 

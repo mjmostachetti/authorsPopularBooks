@@ -1,0 +1,23 @@
+{
+  "name": "authorsBooksAppD3",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mjmostachetti/authorsPopularBooks",
+  "authors": [
+    "Mike Mostachetti <mjmostachetti@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.4",
+    "angular-route": "~1.4.4",
+    "bootstrap": "~3.3.5",
+    "d3": "~3.5.6"
+  }
+}
