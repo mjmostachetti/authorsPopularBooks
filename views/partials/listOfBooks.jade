@@ -1,0 +1,17 @@
+svg.chart
+.continer-fluid
+  .row
+    .col-md-2
+      !="Search: "
+      input(ng-model="query")
+      select(ng-model="orderProp")
+        option(value="name") Alphabetical
+        option(value="age") Newest
+        option(value="-age") Oldest
+    .col-md-10
+      ul.books
+        li.thumbnail(ng-repeat="book in books | filter:query | orderBy:orderProp")
+          a.thumb(href!="#/books/{{ book.id }}")
+            img(ng-src!="{{book.imageUrl}}")
+          a(href!="#/books/{{book.id}}")!="{{book.name}}"
+          p!="{{book.snippet}}"

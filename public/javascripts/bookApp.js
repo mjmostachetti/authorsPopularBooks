@@ -1,10 +1,21 @@
-var bookApp = angular.module('bookApp', [])
+var bookApp = angular.module('bookApp', [
+  'ngRoute',
+  'bookAppControllers'
+]);
 
-bookApp.controller('BookListCtrl', ['$scope','$http',
-  function($scope, $http){
-    $scope.name = "World";
-    $http.get('books.json').success(function(data){
-      $scope.books = data;
-    });
-    $scope.orderProp = 'age';
-}])
+bookApp.config(['$routeProvider',
+  function($routeProvider){
+    $routeProvider.
+      when('/books',{
+        templateUrl: 'partials/listOfBooks',
+        controller: 'BookListCtrl'
+      }).
+      when('books/:bookId',{
+        templateUrl : 'partials/book-detail',
+        controller : 'BookDetailCtrl'
+      }).
+      otherwise({
+        redirectTo: '/books'
+      })
+  }
+]);

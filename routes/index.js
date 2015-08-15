@@ -7,6 +7,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/partials/:name', function (req, res){
+  var name = req.params.name;
+  res.render('partials/' + name);
+});
+
 //api call to return an authors books
 router.get('/findAuthorsBooks', function(request,response){
   console.log(request.body)
