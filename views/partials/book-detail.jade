@@ -1,0 +1,19 @@
+img.phone(ng-src!='{{ book.images[0] }}')
+
+h1!='{{ book.name }}'
+
+p!='{{ book.description }}'
+
+ul.phone-thumbs
+  li(ng-repeat='img in book.images')
+    img(ng-src!='{{ img }}')
+
+ul.specs
+  li
+    span Availability and Networks
+    dl
+      dt Availability
+      dd(ng-repeat='availability in book.availability')!='{{ availability }}'
+  li
+    span Additional Features
+    dd!='{{ book.additionalFeatures }}'

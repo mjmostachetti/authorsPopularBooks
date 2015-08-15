@@ -8,8 +8,12 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
     $scope.orderProp = 'age';
 }]);
 
-bookControllers.controller('BookDetailCtrl', ['$scope','$routeParams',
-  function($scope, $routeParams){
-    $scope.phoneId = $routeParams.phoneId
+bookControllers.controller('BookDetailCtrl', 
+  ['$scope','$routeParams', '$http',
+  function($scope, $routeParams, $http){
+    $http.get('books/' + $routeParams.bookId + '.json')
+      .success(function(data){
+        $scope.book = data;
+      })
   }
 ]);

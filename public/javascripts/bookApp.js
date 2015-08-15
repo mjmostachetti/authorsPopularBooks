@@ -10,7 +10,7 @@ bookApp.config(['$routeProvider',
         templateUrl: 'partials/listOfBooks',
         controller: 'BookListCtrl'
       }).
-      when('books/:bookId',{
+      when('/books/:bookId',{
         templateUrl : 'partials/book-detail',
         controller : 'BookDetailCtrl'
       }).
