@@ -15,6 +15,10 @@ bookApp.config(['$routeProvider',
         templateUrl : 'partials/book-detail',
         controller : 'BookDetailCtrl'
       }).
+      .when('/abeBooks',{
+        templateUrl: 'partials/abeBooksSearch'
+        controller : 'AbeBooksCtrl'
+      })
       otherwise({
         redirectTo: '/books'
       })

@@ -17,3 +17,13 @@ bookControllers.controller('BookDetailCtrl',
       })
   }
 ]);
+
+bookControllers.controller('AbeBooksCtrl',
+  ['$scope','$routeParams','$http'],
+  function($scope, $routeParams, $http){
+    .success(function(data){
+      $scope.books = data;
+    })
+  }
+
+  )

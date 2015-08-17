@@ -15,5 +15,14 @@ ul.specs
       dt Availability
       dd(ng-repeat='availability in book.availability')!='{{ availability }}'
   li
-    span Additional Features
-    dd!='{{ book.additionalFeatures }}'
+    span Battery
+    dl
+      dt Type
+      dd!='{{ book.battery.type }}'
+    dl
+      dt Network Support
+      dd!='{{ book.connectivity.cell | checkmark }}'
+      dt WiFi
+      dd!='{{ book.connectivity.wifi | checkmark }}'
+      dt Bluetooth
+      dd!='{{ book.connectivity.bluetooth | checkmark }}'
