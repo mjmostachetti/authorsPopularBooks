@@ -6,6 +6,15 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
       $scope.books = data;
     });
     $scope.orderProp = 'age';
+    $scope.search = function(){
+      console.log($('#searchAuthor').val())
+      var authorsName = $('#searchAuthor').val()
+      $http.get('findAuthorsBooks/' + authorsName)
+      .success(function(data){
+        $scope.books = data;
+      })
+    };
+
 }]);
 
 bookControllers.controller('BookDetailCtrl', 
@@ -19,11 +28,11 @@ bookControllers.controller('BookDetailCtrl',
 ]);
 
 bookControllers.controller('AbeBooksCtrl',
-  ['$scope','$routeParams','$http'],
+  ['$scope','$routeParams','$http',
   function($scope, $routeParams, $http){
-    .success(function(data){
-      $scope.books = data;
-    })
+    $http.get('findAuthorsBooks/')
+      .success(function(data){
+        $scope.books = data;
+      })
   }
-
-  )
+]);

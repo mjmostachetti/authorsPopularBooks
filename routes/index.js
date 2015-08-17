@@ -13,8 +13,9 @@ router.get('/partials/:name', function (req, res){
 });
 
 //api call to return an authors books
-router.get('/findAuthorsBooks', function(request,response){
+router.get('/findAuthorsBooks/:authorName', function(request,response){
   console.log(request.body)
+  console.log(request.params.authorName)
   /*
   https('https://www.goodreads.com/api/author_url/' + 
     Orson%20Scott%20Card?key=qjXRyTtjvpFSAa8N8VL8Iw')

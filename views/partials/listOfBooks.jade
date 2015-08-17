@@ -1,6 +1,9 @@
 svg.chart
 .continer-fluid
   .row
+    input#searchAuthor
+    button(ng-click='search()')
+  .row
     .col-md-2
       !="Search: "
       input(ng-model="query")

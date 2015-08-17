@@ -14,12 +14,12 @@ bookApp.config(['$routeProvider',
       when('/books/:bookId',{
         templateUrl : 'partials/book-detail',
         controller : 'BookDetailCtrl'
-      }).
+      })
       .when('/abeBooks',{
-        templateUrl: 'partials/abeBooksSearch'
+        templateUrl: 'partials/abeBooksSearch',
         controller : 'AbeBooksCtrl'
       })
-      otherwise({
+      .otherwise({
         redirectTo: '/books'
       })
   }
