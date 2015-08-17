@@ -22,7 +22,6 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
   https.get('https://www.goodreads.com/api/author_url/' + 
     authorsName + '?key=qjXRyTtjvpFSAa8N8VL8Iw',
     function(res){
-
       res.on('data', function(d){
         authorXML += d;
       })
@@ -30,8 +29,25 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
       res.on('end', function(){
         console.log(authorXML)
         parseString(authorXML, function (err, result) {
-            console.log(result.GoodreadsResponse.author);
-        });
+          // Author Id
+          console.log(result.GoodreadsResponse.author[0].$.id);
+          var authorID = result.GoodreadsResponse.author[0].$.id;
+          var authorsBooks = ''
+          https.get('https://www.goodreads.com/author/list/' +
+            authorID + '?format=xml&key=qjXRyTtjvpFSAa8N8VL8Iw', function(res){
+              res.on('data', function(d){
+                authorsBooks += d
+              })
+              res.on('end', function(){
+                parseString(authorsBooks,function (err,result){
+                  console.log(result.GoodreadsResponse.author[0])
+                  var authorObj = result.GoodreadsResponse.author[0];
+                  //return the author obj
+                  response.json(authorObj)
+                })
+              })
+            })
+          });
       })
     })
 })
