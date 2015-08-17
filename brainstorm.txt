@@ -1,3 +1,5 @@
 Apps
 Bio
 Music
+
+Correlate Rating to num pages

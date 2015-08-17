@@ -42,7 +42,7 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                 parseString(authorsBooks,function (err,result){
                   console.log(result.GoodreadsResponse.author[0])
                   var authorObj = result.GoodreadsResponse.author[0];
-                  //return the author obj
+                  //return the author
                   response.json(authorObj)
                 })
               })

@@ -12,6 +12,10 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
       $http.get('findAuthorsBooks/' + authorsName)
       .success(function(data){
         $scope.authorObj = data;
+        var svgContainer = d3.select('#svgDocker').append('svg')
+          .attr('width',400)
+          .attr('height',400)
+          
       })
     };
 
