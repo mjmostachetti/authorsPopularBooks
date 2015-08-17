@@ -11,7 +11,7 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
       var authorsName = $('#searchAuthor').val()
       $http.get('findAuthorsBooks/' + authorsName)
       .success(function(data){
-        $scope.books = data;
+        $scope.authorObj = data;
       })
     };
 

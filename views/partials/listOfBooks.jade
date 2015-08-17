@@ -1,8 +1,16 @@
 svg.chart
-.continer-fluid
+.container-fluid
   .row
-    input#searchAuthor
-    button(ng-click='search()')
+    .col-md-6
+      p!='{{ authorObj.name[0] }}'
+      ul
+        li(ng-repeat="book in authorObj.books[0].book")
+          p!="Title : {{book.title[0]}}"
+          img(src!="{{  book.image_url[0] }}")
+  .row
+    form
+      input#searchAuthor
+      input(type='button' ng-click='search()')
   .row
     .col-md-2
       !="Search: "
