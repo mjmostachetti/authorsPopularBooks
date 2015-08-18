@@ -3,3 +3,6 @@ Bio
 Music
 
 Correlate Rating to num pages
+add buttons that shift the way the data is presented
+make site that gathers data every day, then have d3 visualization on it
+
