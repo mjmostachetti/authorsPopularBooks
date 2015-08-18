@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    #svgDocker.col-md-6
+    #svgDocker.col-md-12
   //.row
     .col-md-6
       p!='{{ authorObj.name[0] }}'
@@ -11,9 +11,10 @@
           p!="Average Rating : {{ book.average_rating[0] }}"
           img(src!="{{  book.image_url[0] }}")
   .row
-    form
-      input#searchAuthor
-      input(type='button' value="Click Here" ng-click='search()')
+    .col-md-12
+      form
+        input#searchAuthor
+        input(type='button' value="Click Here" ng-click='search()')
   //.row
     .col-md-2
       !="Search: "
