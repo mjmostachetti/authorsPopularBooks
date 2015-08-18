@@ -1,32 +1,12 @@
-.container-fluid
+.container
   .row
-    #svgDocker.col-md-12
-  //.row
-    .col-md-6
-      p!='{{ authorObj.name[0] }}'
-      ul
-        li(ng-repeat="book in authorObj.books[0].book")
-          p!="Title : {{book.title[0]}}"
-          p!="Length : {{book.num_pages[0]}} pages"
-          p!="Average Rating : {{ book.average_rating[0] }}"
-          img(src!="{{  book.image_url[0] }}")
+    .col-md-12.text-center
+      h1 Author Data Analysis
+      h2!='Author : {{ authorObj.name[0] }}'
+  .row
+    #svgDocker.col-md-12.text-center(ng-mouseenter="fun($event)")
   .row
     .col-md-12
-      form
-        input#searchAuthor
+      form.text-center
+        input#searchAuthor(ng-keyup="onKeyUp($event)")
         input(type='button' value="Click Here" ng-click='search()')
-  //.row
-    .col-md-2
-      !="Search: "
-      input(ng-model="query")
-      select(ng-model="orderProp")
-        option(value="name") Alphabetical
-        option(value="age") Newest
-        option(value="-age") Oldest
-    .col-md-10
-      ul.books
-        li.thumbnail(ng-repeat="book in books | filter:query | orderBy:orderProp")
-          a.thumb(href!="#/books/{{ book.id }}")
-            img(ng-src!="{{book.imageUrl}}")
-          a(href!="#/books/{{book.id}}")!="{{book.name}}"
-          p!="{{book.snippet}}"
