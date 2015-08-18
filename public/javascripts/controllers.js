@@ -15,7 +15,9 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
       .success(function(data){
         console.log(data)
         $scope.authorBio = data.authorBio
-        console.log($scope.authorBio.influences)
+        var stringOfInfluences = $scope.authorBio.influences[0]
+        $scope.arrayOfInfluences = returnInfluencesArray(stringOfInfluences)
+
         $scope.authorObj = data.authorInfo;
         var allBooks = $scope.authorObj.books[0].book
         var tenBooks = allBooks.slice(0,10)
@@ -186,4 +188,38 @@ var render = function(data){
           d.value = +d.value;
           return d;
         } 
+}
+
+function returnInfluencesArray(string){
+  var stringSplitUp = string.split('')
+  console.log(stringSplitUp)
+  var keepAuthors = [];
+  var authorsName = '';
+  var afterClosingBracket = false;
+  if(string.search('<') !== -1){
+      for(var x = 0; x < stringSplitUp.length; x++){
+        if(afterClosingBracket === true && stringSplitUp[x] !== '<'){
+          authorsName += stringSplitUp[x]
+          console.log(authorsName)
+        }
+        else if(stringSplitUp[x] === '>'){
+          afterClosingBracket = true;
+        } 
+        else if(stringSplitUp[x] === '<'){
+          afterClosingBracket = false;
+          keepAuthors.push(authorsName)
+          console.log(authorsName)
+          authorsName = '';
+        }
+      }
+  }
+  else{
+    console.log(string)
+    return string;
+  }
+  var removeNoneSense = keepAuthors.filter(function(author){
+    return author.length > 4
+  })
+  console.log(removeNoneSense)
+  return keepAuthors;
 }
