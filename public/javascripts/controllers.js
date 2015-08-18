@@ -13,7 +13,10 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
       var authorsName = $('#searchAuthor').val()
       $http.get('findAuthorsBooks/' + authorsName)
       .success(function(data){
-        $scope.authorObj = data;
+        console.log(data)
+        $scope.authorBio = data.authorBio
+        console.log($scope.authorBio.influences)
+        $scope.authorObj = data.authorInfo;
         var allBooks = $scope.authorObj.books[0].book
         var tenBooks = allBooks.slice(0,10)
         render(tenBooks);

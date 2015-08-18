@@ -47,7 +47,17 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                   }
                   https.get('https://www.goodreads.com/author/show.xml?id=' +
                     authorID + '&key=qjXRyTtjvpFSAa8N8VL8Iw', function(res){
-                      
+                      var authorsInfo = '';
+                      res.on('data', function(data){
+                        authorsInfo += data
+                      })
+                      res.on('end', function(){
+                        parseString(authorsInfo, function (err,result){
+                          authorsInfo = result.GoodreadsResponse.author[0]
+                          responseObj.authorBio = authorsInfo
+                          response.json(responseObj)
+                        })
+                      })
                     })
                   //return the author
                   //response.json(authorObj)
