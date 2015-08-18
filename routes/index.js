@@ -42,8 +42,15 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                 parseString(authorsBooks,function (err,result){
                   console.log(result.GoodreadsResponse.author[0])
                   var authorObj = result.GoodreadsResponse.author[0];
+                  var responseObj = {
+                    authorInfo : authorObj
+                  }
+                  https.get('https://www.goodreads.com/author/show.xml?id=' +
+                    authorID + '&key=qjXRyTtjvpFSAa8N8VL8Iw', function(res){
+                      
+                    })
                   //return the author
-                  response.json(authorObj)
+                  //response.json(authorObj)
                 })
               })
             })
