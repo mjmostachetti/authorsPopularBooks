@@ -1,12 +1,17 @@
 .container
   .row
-    .col-md-12.text-center
+    .col-md-4.text-center
       h1 Author Data Analysis
       h2!='Author : {{ authorObj.name[0] }}'
+      h3#bookTitle!='{{ title }}'
+    .col-md-8.text-center
+      h1 Description
+      p#bookDesc(ng-bind="bookDesc")
   .row
-    #svgDocker.col-md-12.text-center(ng-mouseenter="fun($event)")
+    #svgDocker.col-md-12.text-center
   .row
-    .col-md-12
+    .col-md-4
       form.text-center
         input#searchAuthor(ng-keyup="onKeyUp($event)")
         input(type='button' value="Click Here" ng-click='search()')
+    .col-md-8

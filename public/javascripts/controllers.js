@@ -6,6 +6,8 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
       $scope.books = data;
     });
     $scope.orderProp = 'age';
+    $scope.bookDesc = '';
+    $scope.title = '';
     $scope.search = function(){
       console.log($('#searchAuthor').val())
       var authorsName = $('#searchAuthor').val()
@@ -15,15 +17,22 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
         var allBooks = $scope.authorObj.books[0].book
         var tenBooks = allBooks.slice(0,10)
         render(tenBooks);
+        $('.bar').on("mouseover",function(event){
+          $scope.displayDescription(event)
+        })
       })
-    };
-    $scope.fun = function($event){
-      console.log('fuck')
     };
     $scope.onKeyUp = function($event){
       if($event.keyCode === 13){
         $scope.search();
       }
+    }
+    $scope.displayDescription = function(event){
+      console.log(event.currentTarget.__data__.description[0])
+      $scope.bookDesc = event.currentTarget.__data__.description[0]
+      $('#bookDesc').html($scope.bookDesc)
+      $scope.title = event.currentTarget.__data__.title[0]
+      $('#bookTitle').html($scope.title)
     }
 }]);
 
@@ -117,6 +126,19 @@ var render = function(data){
             .attr("class", "y axis")
             .call(yAxis);
 
+        console.log(data)
+        var highestRating;
+        data.forEach(function(d,i){
+          if(i === 0){
+            console.log('runs')
+            highestRating = d
+            console.log(d.average_rating[0])
+          }else if (highestRating.average_rating[0] < d.average_rating[0]){
+            highestRating = d
+          }
+        })
+
+        console.log(highestRating)
         svg.selectAll(".bar")
             .data(data)
           .enter().append("rect")
@@ -127,7 +149,6 @@ var render = function(data){
             .attr("height", function(d) { 
               return height - y(d.average_rating[0]); 
             })
-            .attr('ng-dblclick','console.log("ficl")')
 
         function wrap(text, width) {
           text.each(function() {
