@@ -19,7 +19,12 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
         render(tenBooks);
         $('.bar').on("mouseover",function(event){
           $scope.displayDescription(event)
+          console.log(event.currentTarget.style)
         })
+        $scope.bookDesc = tenBooks[0].description[0]
+        $('#bookDesc').html($scope.bookDesc)
+        $scope.title = tenBooks[0].title[0]
+        //$('#bookTitle').html($scope.title)
       })
     };
     $scope.onKeyUp = function($event){
