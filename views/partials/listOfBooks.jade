@@ -1,7 +1,12 @@
 .container
   .row
-    .col-md-6.text-center
+    .col-md-12.text-center
       h1 Author Data Analysis
+      form.text-center
+        input#searchAuthor(ng-keyup="onKeyUp($event)")
+        input(type='button' value="Click Here" ng-click='search()')
+  .row
+    .col-md-6.text-center
       h2!='Author : {{ authorObj.name[0] }}'
       .row
         .col-md-12
@@ -15,8 +20,3 @@
     #svgDocker.col-md-8.text-center
     .col-md-4
       p!='{{ arrayOfInfluences }}'
-  .row
-    .col-md-12
-      form.text-center
-        input#searchAuthor(ng-keyup="onKeyUp($event)")
-        input(type='button' value="Click Here" ng-click='search()')

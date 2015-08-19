@@ -1,0 +1,9 @@
+To get webpage info
+
+https://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvprop=content&titles=Ed_Ricketts
+
+Get Authors Image
+
+https://en.wikipedia.org/wiki/William_Faulkner#/media/File:Carl Van Vechten - William Faulkner.jpg
+
+They Said So API

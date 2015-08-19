@@ -11,13 +11,10 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
       .success(function(data){
         console.log(data)
         $scope.authorBio = data.authorBio;
-        console.log("This is authorBio")
-        console.log($scope.authorBio)
-        console.log(data.authorBio['large_img_url'])
-        $scope.authorPic = data.authorBio.large_img_url[0];
+        $scope.authorPic = data.authorBio.large_image_url[0];
         var stringOfInfluences = $scope.authorBio.influences[0];
         $scope.arrayOfInfluences = returnInfluencesArray(stringOfInfluences)
-
+        console.log($scope.arrayOfInfluences)
         $scope.authorObj = data.authorInfo;
         var allBooks = $scope.authorObj.books[0].book
         var tenBooks = allBooks.slice(0,10)
