@@ -3,13 +3,18 @@
     .col-md-6.text-center
       h1 Author Data Analysis
       h2!='Author : {{ authorObj.name[0] }}'
+      .row
+        .col-md-12
+          img#mainAuthorPic(ng-src='{{ authorPic }}')
     .col-md-6.text-center
       h3#bookTitle!='{{ title }}'
       .row
         .col-md-12#descDiv
           p#bookDesc!='{{ bookDesc }}'
   .row
-    #svgDocker.col-md-12.text-center
+    #svgDocker.col-md-8.text-center
+    .col-md-4
+      p!='{{ arrayOfInfluences }}'
   .row
     .col-md-12
       form.text-center

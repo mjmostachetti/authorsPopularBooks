@@ -2,20 +2,20 @@ var bookControllers = angular.module('bookAppControllers',[]);
 
 bookControllers.controller('BookListCtrl', ['$scope','$http',
   function($scope, $http){
-    $http.get('books.json').success(function(data){
-      $scope.books = data;
-    });
-    $scope.orderProp = 'age';
-    $scope.bookDesc = '';
     $scope.title = '';
+    $scope.authorBio;
     $scope.search = function(){
       console.log($('#searchAuthor').val())
       var authorsName = $('#searchAuthor').val()
       $http.get('findAuthorsBooks/' + authorsName)
       .success(function(data){
         console.log(data)
-        $scope.authorBio = data.authorBio
-        var stringOfInfluences = $scope.authorBio.influences[0]
+        $scope.authorBio = data.authorBio;
+        console.log("This is authorBio")
+        console.log($scope.authorBio)
+        console.log(data.authorBio['large_img_url'])
+        $scope.authorPic = data.authorBio.large_img_url[0];
+        var stringOfInfluences = $scope.authorBio.influences[0];
         $scope.arrayOfInfluences = returnInfluencesArray(stringOfInfluences)
 
         $scope.authorObj = data.authorInfo;
@@ -221,5 +221,5 @@ function returnInfluencesArray(string){
     return author.length > 4
   })
   console.log(removeNoneSense)
-  return keepAuthors;
+  return removeNoneSense;
 }
