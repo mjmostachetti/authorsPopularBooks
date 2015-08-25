@@ -13,8 +13,9 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
         $scope.authorBio = data.authorBio;
         $scope.authorPic = data.authorBio.large_image_url[0];
         //var stringOfInfluences = $scope.authorBio.influences[0];
-        $scope.arrayOfInfluences = data.authorBio.influences[0]
-        console.log($scope.arrayOfInfluences)
+        $scope.influencesToAuthor = data.influencesToAuthor
+        console.log("This is the array of influences")
+        console.log($scope.influencesToAuthor)
         $scope.authorObj = data.authorInfo;
         var allBooks = $scope.authorObj.books[0].book
         var tenBooks = allBooks.slice(0,10)

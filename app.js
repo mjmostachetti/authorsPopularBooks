@@ -23,11 +23,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
+  src: __dirname + '/public',
+  dest: __dirname + '/public',
   debug: true,
-  outputStyle: 'compressed'
-}))
+  force: true
+}));
+console.log('fuck')
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
