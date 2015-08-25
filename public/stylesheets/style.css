@@ -16,8 +16,3 @@
 .x.axis path {
   display: none;
 }
-
-#descDiv {
-  max-height: 2px;
-  overflow: scroll;
-}

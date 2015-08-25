@@ -1,10 +1,31 @@
-$primaryColor : #eeffcc;
+$book-desc-height: 300px;
 
-body{
-  $primaryColor: #ccc;
-  background: $primaryColor
+#descDiv{
+  max-height: $book-desc-height;
+  overflow: scroll;
 }
 
-p{
-  color: $primaryColor
+.bar {
+  fill: steelblue;
+}
+
+.axis{
+  .text{
+      font: 10px sans-serif;
+  }
+  path, line{
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+  }
+}
+
+
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
