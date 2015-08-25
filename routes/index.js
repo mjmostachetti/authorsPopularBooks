@@ -153,6 +153,7 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
 
                           authorsInfo.influences = arrayOfInfluences
                           var influencesLength = arrayOfInfluences.length
+                          console.log("There are " + influencesLength + " number of influences.")
                           if(influencesLength === 0){
                             responseObj.authorBio = authorsInfo
                             response.json(responseObj)
@@ -163,6 +164,7 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                           console.log(typeof arrayOfInfluences)
                           if(typeof arrayOfInfluences === 'string'){
                             arrayOfInfluences = arrayOfInfluences.split(', ')
+                            influencesLength = arrayOfInfluences.length
                             console.log(arrayOfInfluences)
                           }
                           arrayOfInfluences.forEach(function(author){
@@ -179,9 +181,11 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                                       //console.log(result.GoodreadsResponse.author[0].$.id);
                                       // one of these influences for faulkner isn't return any useful information
                                       // maybe can fix it in the error handling
-                                      console.log("error here?")
-                                      console.log(result.GoodreadsResponse)
-                                      var authorID = result.GoodreadsResponse.author[0].$.id;
+                                      if(result.GoodreadsResponse.author === undefined){
+                                        counter++;
+                                        console.log("Influence has no books in goodreads")
+                                      }else{
+                                       var authorID = result.GoodreadsResponse.author[0].$.id;
                                       var authorsBooks = '';
                                       https.get('https://www.goodreads.com/author/show.xml?id=' +
                                         authorID + '&key=qjXRyTtjvpFSAa8N8VL8Iw', function(res) {
@@ -194,22 +198,24 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                                                 console.log(err)
                                               }
                                               counter++;
-                                              console.log(counter)
                                               //console.log(result.GoodreadsResponse.author[0])
                                               var authorObj = result.GoodreadsResponse.author[0];
                                               //console.log(influencesObj)
                                               influencesObj.push(authorObj);
+                                              console.log(influencesLength)
+                                              console.log(counter)
                                               if(influencesLength === counter){
                                                 console.log('done!')
                                                 responseObj.authorBio = authorsInfo;
                                                 responseObj.influencesToAuthor = influencesObj;
                                                 console.log(responseObj)
-                                                console.log(response)
                                                 response.json(responseObj)
                                               }
                                             })
                                           })
-                                      })
+                                      }) 
+                                      }
+                                      
                                     })
                                   })
                           })
