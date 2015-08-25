@@ -163,9 +163,11 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                           console.log(typeof arrayOfInfluences)
                           if(typeof arrayOfInfluences === 'string'){
                             arrayOfInfluences = arrayOfInfluences.split(', ')
+                            console.log(arrayOfInfluences)
                           }
                           arrayOfInfluences.forEach(function(author){
                             var authorXML = '';
+                            console.log(author)
                             https.get('https://www.goodreads.com/api/author_url/' + 
                               author + '?key=qjXRyTtjvpFSAa8N8VL8Iw', function(res){
                                   res.on('data', function(d){
@@ -175,6 +177,10 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                                     //console.log(authorXML)
                                     parseString(authorXML, function (err, result) {
                                       //console.log(result.GoodreadsResponse.author[0].$.id);
+                                      // one of these influences for faulkner isn't return any useful information
+                                      // maybe can fix it in the error handling
+                                      console.log("error here?")
+                                      console.log(result.GoodreadsResponse)
                                       var authorID = result.GoodreadsResponse.author[0].$.id;
                                       var authorsBooks = '';
                                       https.get('https://www.goodreads.com/author/show.xml?id=' +
