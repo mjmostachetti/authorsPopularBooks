@@ -108,6 +108,8 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
   //console.log(authorsName)
   var authorXML = '';
   var parseString = xml2js.parseString
+
+  // get authors id from the database
   https.get('https://www.goodreads.com/api/author_url/' + 
     authorsName + '?key=qjXRyTtjvpFSAa8N8VL8Iw',
     function(res){
@@ -122,6 +124,9 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
           //console.log(result.GoodreadsResponse.author[0].$.id);
           var authorID = result.GoodreadsResponse.author[0].$.id;
           var authorsBooks = ''
+
+          //
+
           https.get('https://www.goodreads.com/author/list/' +
             authorID + '?format=xml&key=qjXRyTtjvpFSAa8N8VL8Iw', function(res){
               res.on('data', function(d){
@@ -156,6 +161,9 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                           var influencesObj = [];
                           console.log("Before For Each")
                           console.log(typeof arrayOfInfluences)
+                          if(typeof arrayOfInfluences === 'string'){
+                            arrayOfInfluences = arrayOfInfluences.split(', ')
+                          }
                           arrayOfInfluences.forEach(function(author){
                             var authorXML = '';
                             https.get('https://www.goodreads.com/api/author_url/' + 
