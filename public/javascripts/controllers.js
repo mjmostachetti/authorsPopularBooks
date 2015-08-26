@@ -4,19 +4,46 @@ bookControllers.controller('BookListCtrl', ['$scope','$http',
   function($scope, $http){
     $scope.title = '';
     $scope.authorBio;
+    $scope.influencesToAuthor = [];
     $scope.search = function(){
       console.log($('#searchAuthor').val())
       var authorsName = $('#searchAuthor').val()
       $http.get('findAuthorsBooks/' + authorsName)
       .success(function(data){
         console.log(data)
+        $scope.authorObj = data.authorInfo;
         $scope.authorBio = data.authorBio;
         $scope.authorPic = data.authorBio.large_image_url[0];
         //var stringOfInfluences = $scope.authorBio.influences[0];
         $scope.influencesToAuthor = data.influencesToAuthor
         console.log("This is the array of influences")
         console.log($scope.influencesToAuthor)
-        $scope.authorObj = data.authorInfo;
+        if($scope.influencesToAuthor.length !== 0){
+          var counter = 0;
+          var splitUpAuthors = []
+          var masterSplitUp = []
+          data.influencesToAuthor.forEach(function(author){
+            if(counter%4 === 0 && counter !== 0){
+              masterSplitUp.push(splitUpAuthors)
+              splitUpAuthors = [];
+              console.log("just added to master")
+            }
+            splitUpAuthors.push(author);
+            counter++;
+            console.log(counter)
+          })
+          if(splitUpAuthors.length){
+            console.log("If you haven't pushed to masterSplitUp")
+            console.log(splitUpAuthors)
+            masterSplitUp.push(splitUpAuthors)
+          }
+          console.log("This is master split up")
+          console.log(masterSplitUp)
+          $scope.influencesToAuthor = masterSplitUp;
+        }else{
+          $scope.influencesToAuthor = data.influencesToAuthor;
+        }
+        console.log("This gets here")
         var allBooks = $scope.authorObj.books[0].book
         var tenBooks = allBooks.slice(0,10)
         render(tenBooks);

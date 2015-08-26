@@ -156,6 +156,7 @@ router.get('/findAuthorsBooks/:authorName', function(request,response){
                           console.log("There are " + influencesLength + " number of influences.")
                           if(influencesLength === 0){
                             responseObj.authorBio = authorsInfo
+                            responseObj.influencesToAuthor = [];
                             response.json(responseObj)
                             return
                           }                         

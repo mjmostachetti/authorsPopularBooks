@@ -18,9 +18,21 @@
           p#bookDesc!='{{ bookDesc }}'
   .row
     #svgDocker.col-md-12.text-center
-  .row
-    .col-md-12
-      img(ng-repeat="inspiration in influencesToAuthor" src!='{{ inspiration.image_url[0] }}')
-      p(ng-repeat="inspiration in influencesToAuthor")!='{{ inspiration.name[0] }}'
+  .row(ng-repeat='group in influencesToAuthor')
+    .col-md-3.text-center
+      img(ng-src="{{group[0].image_url[0]}}")
+      p='{{ group[0].name[0] }}'
+    .col-md-3.text-center
+      img(ng-src="{{group[1].image_url[0]}}")
+      p='{{ group[1].name[0] }}'
+    .col-md-3.text-center
+      img(ng-src="{{group[2].image_url[0]}}")
+      p='{{ group[2].name[0] }}'
+    .col-md-3.text-center
+      img(ng-src="{{group[3].image_url[0]}}")
+      p='{{ group[3].name[0] }}'
+
+
+    
 
 
